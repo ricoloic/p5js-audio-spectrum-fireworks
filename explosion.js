@@ -1,12 +1,12 @@
 class Explosion {
-    constructor(pos, c, maxLifetime, amount = 25, weight) {
+    constructor(pos, c, maxLifetime, amount, weight, v) {
         this.pos = pos;
         this.particles = [];
         this.lifetime = 0;
         for (let i = 0; i < amount; i++) {
             const lifetime = random(1, maxLifetime);
             if (lifetime > this.lifetime) this.lifetime = lifetime;
-            const vel = createVector(random(-3, 3), random(-3, 3));
+            const vel = createVector(random(-3, 3), random(-3, 3)).mult(v);
             this.particles.push(new Particle(pos.copy(), vel, lifetime, c, weight));
         }
         this.finished = false;
